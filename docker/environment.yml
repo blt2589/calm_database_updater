@@ -1,0 +1,43 @@
+name: geo
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - pip
+
+  # Jupyter
+  - jupyterlab
+  - ipykernel
+
+  # Core numeric/data
+  - numpy
+  - pandas
+  - scipy
+  - matplotlib
+
+  # Geospatial Python stack
+  - geopandas
+  - shapely
+  - pyproj
+  - fiona
+  - rasterio
+  - rtree
+  - xarray
+  - rioxarray
+
+  # GDAL + SQLite (Python bindings & libs)
+  - gdal
+  - sqlite
+
+  # Database interaction
+  - psycopg2
+  - sqlalchemy
+  - geoalchemy2
+
+  # Other
+  - python-dotenv
+  - netcdf4
+
+  # Optional nice-to-haves
+  - rich
+  - tqdm

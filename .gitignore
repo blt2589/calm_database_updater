@@ -216,3 +216,19 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+########
+# User defined
+# generated databases / artifacts
+work/db/
+work/data/
+
+
+# python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# misc
+.DS_Store
+.vscode
