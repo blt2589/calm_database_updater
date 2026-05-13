@@ -1,6 +1,5 @@
 """
-docker compose run --rm runner python /work/scripts/copy_db.py work/db/calm_v10.sqlite work/db/calm_v10.sqlite
-
+docker compose run --rm runner python /work/scripts/copy_db.py
 """
 
 from pathlib import Path
