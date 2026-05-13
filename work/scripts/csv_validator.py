@@ -7,7 +7,7 @@ from pathlib import Path
 import sqlite3
 import pandas as pd
 import yaml
-
+from datetime import datetime
 
 # TODO: other validation checks? require every measurement column not null?
 
@@ -84,7 +84,6 @@ def get_database_grid_node_ids(db_path):
     db_ids = pd.read_sql_query(query, conn)["grid_node_id"].astype(str).tolist()
 
     conn.close()
-
     return set(db_ids)
 
 
@@ -94,14 +93,12 @@ def validate_grid_nodes_exist(df, db_path):
     """
     csv_ids = set(df["grid_node_id"].astype(str).str.strip())
     db_ids = get_database_grid_node_ids(db_path)
-
     missing_ids = sorted(csv_ids - db_ids)
 
     if missing_ids:
         raise ValueError(
             f"The following grid_node_id values are not in the database: {missing_ids}"
         )
-
     print("All CSV grid_node_id values exist in the database.")
 
 
@@ -116,7 +113,6 @@ def validate_duplicate_grid_nodes(df):
             f"Duplicate grid_node_id values found:\n"
             f"{duplicates[['grid_node_id', 'grid_node_code']]}"
         )
-
     print("No duplicate grid_node_id values found.")
 
 
@@ -133,7 +129,6 @@ def is_valid_alt_value(value):
 
     if value in VALID_ALT_CODES:
         return True
-
     try:
         float(value)
         return True
@@ -175,20 +170,31 @@ def validate_alt_values(df):
 
 def validate_measurement_dates(df):
     """
-    Check that measurement_date values can be parsed as dates
-    Format: 
+    Check that measurement_date values are MM/DD/YYYY
     """
-    parsed_dates = pd.to_datetime(df["measurement_date"], errors="coerce")
+    errors = []
 
-    invalid_dates = df[parsed_dates.isna()]
-
-    if not invalid_dates.empty:
+    for idx, row in df.iterrows():
+        date_value = str(row["measurement_date"]).strip()
+        try:
+            # Date format enforcement
+            datetime.strptime(date_value, "%m/%d/%Y")
+        except ValueError:
+            errors.append(
+                {
+                    "row_number": idx + 2,
+                    "grid_node_id": row["grid_node_id"],
+                    "invalid_date": date_value,
+                }
+            )
+    if errors:
+        error_df = pd.DataFrame(errors)
         raise ValueError(
-            f"Invalid measurement_date values found:\n"
-            f"{invalid_dates[['grid_node_id', 'measurement_date']]}"
+            "Invalid measurement_date values found.\n"
+            "Dates must use MM/DD/YYYY format.\n\n"
+            f"{error_df}"
         )
-
-    print("All measurement_date values are valid.")
+    print("All measurement_date values use MM/DD/YYYY format.")
 
 
 def run_validation(config):
