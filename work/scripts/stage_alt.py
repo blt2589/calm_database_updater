@@ -36,7 +36,7 @@ def format_measurement_date(value):
     return datetime.strptime(value.strip(), "%m/%d/%Y").strftime("%Y-%m-%d")
 
 
-# TODO: Check with AEK for best way to handle: 42, G
+# TODO: Check with AEK for best way to handle node with single measurement and gravel: 42, G
 def calculate_mean_alt(value_a, value_b):
     """
     Calc mean ALT ??only?? when both measurements are numeric
