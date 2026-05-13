@@ -5,19 +5,8 @@ docker compose run --rm runner python /work/scripts/copy_db.py
 from pathlib import Path
 import shutil
 import sqlite3
-import yaml
 
-
-def load_config(config_path):
-    """
-    Load config settings from YAML
-    Parameters:
-        config_path (str): Path to config YAML
-    Returns:
-        dict: config dictionary
-    """   
-    with open(config_path, "r") as f:
-        return yaml.safe_load(f)
+from helpers.load_config import load_config
 
 
 def copy_database(source_db, output_db):
