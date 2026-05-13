@@ -2,31 +2,13 @@
 docker compose run --rm runner python /work/scripts/stage_alt.py
 """
 
-from pathlib import Path
 from datetime import datetime
 import sqlite3
 import pandas as pd
-import yaml
 
+from helpers.load_csv import load_csv
+from helpers.load_config import load_config
 
-def load_config(config_path):
-    """
-    Load config YAML
-    """
-    with open(config_path, "r") as f:
-        return yaml.safe_load(f)
-
-
-def load_csv(csv_path):
-    """
-    Load field CSV 
-    """
-    path = Path(csv_path)
-
-    if not path.exists():
-        raise FileNotFoundError(f"CSV file not found: {path}")
-
-    return pd.read_csv(path, dtype=str).fillna("")
 
 # TODO: verify values with AEK
 def parse_alt_value(value):
