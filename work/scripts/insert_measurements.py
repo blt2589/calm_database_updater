@@ -28,7 +28,7 @@ def check_staging_table_exists(conn):
 
     print("Staging table found.")
 
-
+## TODO: if not 121 records (for grid), throw exception?
 def count_staged_records(conn):
     """
     Count staged records before insertion
