@@ -8,6 +8,8 @@ Prerequisites:
 - CALM dataset (.sqlite)
 
 ---
+Order of Operations
+
 1. Update update_config.yaml with this year's information
    - source database path
    - output database path
