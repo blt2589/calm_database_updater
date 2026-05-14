@@ -1,5 +1,5 @@
 """
-docker compose run --rm runner python /work/scripts/csv_validator.py
+docker compose run --rm runner python /work/scripts/validate_csv.py
 """
 from validators.validate_grid_nodes import (
     validate_duplicate_grid_nodes,
@@ -10,6 +10,7 @@ from validators.validate_grid_nodes import (
 from validators.validate_req_columns import validate_req_columns
 from validators.validate_alt_values import validate_alt_values
 from validators.validate_measurement_dates import validate_measurement_dates
+from validators.validate_alt_ranges import validate_alt_ranges
 
 
 from helpers.load_csv import load_csv
@@ -37,6 +38,7 @@ def run_validation(config):
     validate_duplicate_grid_nodes(df)
     validate_alt_values(df)
     validate_measurement_dates(df)
+    validate_alt_ranges(df)
 
     print("\nCSV validation completed successfully.")
     print(f"Rows validated: {len(df)}")
