@@ -1,0 +1,20 @@
+# /work/scripts/config/update_config.yaml
+
+source_database: "/work/db/calm_v10.sqlite"
+output_database: "/work/db/calm_v10_BOB.sqlite"
+
+input_csv: "/work/data/2026_alt_field_export.csv"
+
+measurement_method: "manual probing"
+
+
+validation_status: "raw"
+
+# CALM Program; example: CALM VI
+recorded_by: "CALM VI"
+
+# "grid" or "flux"
+# measurement_type: "grid"
+
+# Who is running the update?
+updated_by: "blt"
