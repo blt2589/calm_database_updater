@@ -15,9 +15,7 @@ def parse_alt_value(value):
     """
     Split raw ALT values into numeric or code
     """
-
     raw = str(value).strip()
-
     if raw == "":
         return None, None
     upper = raw.upper()
@@ -56,6 +54,37 @@ def create_staging_table(conn):
     the final measurement table.
     """
 
+    # sql = """
+    # CREATE TABLE IF NOT EXISTS staging_alt_measurement (
+    #     staging_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    #     grid_node_id TEXT NOT NULL,
+    #     grid_node_code TEXT,
+    #     measurement_date DATE NOT NULL,
+
+    #     active_layer_depth_cm_a_raw TEXT,
+    #     active_layer_depth_cm_b_raw TEXT,
+    #     active_layer_depth_cm_a_code TEXT,
+    #     active_layer_depth_cm_b_code TEXT,
+    #     active_layer_depth_cm_a_num NUMERIC,
+    #     active_layer_depth_cm_b_num NUMERIC,
+    #     active_layer_depth_cm_mean_raw TEXT,
+    #     active_layer_depth_cm_mean_num NUMERIC,
+
+    #     latitude DOUBLE,
+    #     longitude DOUBLE,
+    #     northing INTEGER,
+    #     easting INTEGER,
+
+    #     measurement_method TEXT,
+    #     measurement_type TEXT,
+    #     validation_status TEXT,
+    #     recorded_by TEXT,
+    #     updated_by TEXT,
+    #     metadata TEXT,
+
+    #     staged_at TEXT
+    # );
+    # """
     sql = """
     CREATE TABLE IF NOT EXISTS staging_alt_measurement (
         staging_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -72,11 +101,6 @@ def create_staging_table(conn):
         active_layer_depth_cm_mean_raw TEXT,
         active_layer_depth_cm_mean_num NUMERIC,
 
-        latitude DOUBLE,
-        longitude DOUBLE,
-        northing INTEGER,
-        easting INTEGER,
-
         measurement_method TEXT,
         measurement_type TEXT,
         validation_status TEXT,
@@ -87,7 +111,6 @@ def create_staging_table(conn):
         staged_at TEXT
     );
     """
-
     conn.execute(sql)
     conn.commit()
 
@@ -146,10 +169,10 @@ def stage_measurements(df, config, conn):
             "active_layer_depth_cm_mean_raw": mean_raw,
             "active_layer_depth_cm_mean_num": mean_num,
 
-            "latitude": row["latitude"].strip(),
-            "longitude": row["longitude"].strip(),
-            "northing": row["northing"].strip(),
-            "easting": row["easting"].strip(),
+            # "latitude": row["latitude"].strip(),
+            # "longitude": row["longitude"].strip(),
+            # "northing": row["northing"].strip(),
+            # "easting": row["easting"].strip(),
 
             "measurement_method": measurement_method,
             "measurement_type": measurement_type,
