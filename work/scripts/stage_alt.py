@@ -10,7 +10,7 @@ from helpers.load_csv import load_csv
 from helpers.load_config import load_config
 
 
-# TODO: verify values with AEK
+# TODO: verify values with AEK (code values: W, G, B, ND?, other?)
 def parse_alt_value(value):
     """
     Split raw ALT values into numeric or code
