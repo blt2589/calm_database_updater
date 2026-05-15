@@ -1,5 +1,7 @@
 from datetime import datetime
 
+
+# TODO: fail if not current year
 def validate_measurement_dates(df):
     """
     Check that measurement_date values are MM/DD/YYYY
