@@ -33,7 +33,7 @@ docker compose run --rm runner python /work/scripts/copy_db.py
 
 Validate new data 
 ```
-docker compose run --rm runner python /work/scripts/csv_validator.py
+docker compose run --rm runner python /work/scripts/validate_csv.py
 ```
 
 Stage new data for production
@@ -48,6 +48,6 @@ docker compose run --rm runner python /work/scripts/insert_measurements.py
 
 Update geometries and views
 ```
-docker compose run --rm runner python /work/scripts/insert_measurements.py
+docker compose run --rm runner python /work/scripts/update_geoms.py
 ```
 
