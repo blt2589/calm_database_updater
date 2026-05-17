@@ -170,6 +170,10 @@ def run_insert(config):
         conn.close()
 
 
+
+
+
+
 if __name__ == "__main__":
     config = load_config("/work/scripts/config/update_config.yaml")
     run_insert(config)

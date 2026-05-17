@@ -9,7 +9,7 @@ import sqlite3
 from helpers.load_config import load_config
 
 
-def copy_database(source_db, output_db):
+def copy_db(source_db, output_db):
     """
     Create copy of source database.
     """
@@ -45,14 +45,28 @@ def test_database_connection(db_path):
         print(f" - {table[0]}")
 
 
-if __name__ == "__main__":
-    # Load config file
-    config = load_config("/work/scripts/config/update_config.yaml")
 
-    # Create working copy of db
-    copy_database(
+def run_copy_database(config):
+    """
+    Run database copy workflow with config values
+    """
+    copy_db(
         source_db=config["source_database"],
         output_db=config["output_database"]
     )
     # Verify db copy opens
     test_database_connection(config["output_database"])
+
+
+
+if __name__ == "__main__":
+    # Load config file
+    config = load_config("/work/scripts/config/update_config.yaml")
+
+    # # Create working copy of db
+    # copy_db(
+    #     source_db=config["source_database"],
+    #     output_db=config["output_database"]
+    # )
+    # # Verify db copy opens
+    # test_database_connection(config["output_database"])
