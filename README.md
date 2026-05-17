@@ -7,6 +7,16 @@ Prerequisites:
 - Clone repo to local computer
 - CALM dataset (.sqlite)
 
+
+
+After cloning repo, build the container:
+```
+docker compose build
+```
+---
+
+## Now you are ready to update the CALM database
+
 ---
 Order of Operations
 
@@ -51,3 +61,8 @@ Update geometries and views
 docker compose run --rm runner python /work/scripts/update_geoms.py
 ```
 
+---
+
+Troubleshooting
+- Is Docker running?
+- Check paths in update_config.yaml
