@@ -1,3 +1,4 @@
+import logging
 import sqlite3
 import pandas as pd
 
@@ -55,4 +56,5 @@ def validate_duplicate_grid_nodes(df):
             f"Duplicate grid_node_id values found:\n"
             f"{duplicates[['grid_node_id', 'grid_node_code']]}"
         )
+    logging.info("No duplicate grid_node_id values found.")
     print("No duplicate grid_node_id values found.")

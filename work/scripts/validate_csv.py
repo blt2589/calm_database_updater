@@ -1,6 +1,8 @@
 """
 docker compose run --rm runner python /work/scripts/validate_csv.py
 """
+import logging
+
 from validators.validate_grid_nodes import (
     validate_duplicate_grid_nodes,
     validate_grid_nodes_exist,
@@ -27,6 +29,8 @@ def run_validation(config):
     csv_path = config["input_csv"]
     db_path = config["output_database"]
 
+    logging.info(f"Validating CSV: {csv_path}")
+    logging.info(f"Against database: {db_path}")
     print(f"Validating CSV: {csv_path}")
     print(f"Against database: {db_path}")
 
@@ -40,6 +44,8 @@ def run_validation(config):
     validate_measurement_dates(df)
     validate_alt_ranges(df)
 
+    logging.info("\nCSV validation completed successfully.")
+    logging.info(f"Rows validated: {len(df)}")
     print("\nCSV validation completed successfully.")
     print(f"Rows validated: {len(df)}")
 

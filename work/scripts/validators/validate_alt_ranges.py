@@ -1,3 +1,4 @@
+import logging
 import pandas as pd
 
 
@@ -56,8 +57,10 @@ def validate_alt_ranges(
         if fail_on_warning:
             raise ValueError(message)
 
+        logging.warning(message)
         print(message)
         return warning_df
 
+    logging.info("All numeric ALT values fall within the expected range.")
     print("All numeric ALT values fall within the expected range.")
     return pd.DataFrame()

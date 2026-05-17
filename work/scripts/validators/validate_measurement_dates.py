@@ -1,3 +1,4 @@
+import logging
 from datetime import datetime
 
 
@@ -28,4 +29,5 @@ def validate_measurement_dates(df):
             "Dates must use MM/DD/YYYY format.\n\n"
             f"{error_df}"
         )
+    logging.info("All measurement_date values use MM/DD/YYYY format.")
     print("All measurement_date values use MM/DD/YYYY format.")

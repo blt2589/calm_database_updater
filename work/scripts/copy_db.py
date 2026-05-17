@@ -2,6 +2,7 @@
 docker compose run --rm runner python /work/scripts/copy_db.py
 """
 
+import logging
 from pathlib import Path
 import shutil
 import sqlite3
@@ -23,6 +24,7 @@ def copy_db(source_db, output_db):
         raise FileExistsError(f"Output database already exists: {output}")
 
     shutil.copy2(source, output)
+    logging.info(f"Database copied to: {output}")
     print(f"Database copied to: {output}")
 
 
@@ -39,9 +41,12 @@ def test_database_connection(db_path):
 
     conn.close()
 
+    logging.info("Database opened successfully.")
+    # logging.info("Tables found:")
     print("Database opened successfully.")
     print("Tables found:")
     for table in tables:
+        # logging.info(f" - {table[0]}")
         print(f" - {table[0]}")
 
 
