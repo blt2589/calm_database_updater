@@ -1,20 +1,21 @@
 # /work/scripts/config/update_config.yaml
 
+# Path to source (current production) DB
 source_database: "/work/db/calm_v10.sqlite"
-output_database: "/work/db/calm_v10_BOB.sqlite"
+# Output path to copy of current production DB
+output_database: "/work/db/calm_v10_18may.sqlite"
 
+# Path to ALT CSV
 input_csv: "/work/data/2026_alt_field_export.csv"
 
+# Future use
 measurement_method: "manual probing"
 
-
+# Future use
 validation_status: "raw"
 
 # CALM Program; example: CALM VI
 recorded_by: "CALM VI"
-
-# "grid" or "flux"
-# measurement_type: "grid"
 
 # Who is running the update?
 updated_by: "blt"
