@@ -19,9 +19,6 @@ from helpers.load_csv import load_csv
 from helpers.load_config import load_config
 
 
-
-# TODO: other validation checks? require every measurement column not null?
-
 def run_validation(config):
     """
     Run all CSV validation checks
@@ -31,8 +28,6 @@ def run_validation(config):
 
     logging.info(f"Validating CSV: {csv_path}")
     logging.info(f"Against database: {db_path}")
-    print(f"Validating CSV: {csv_path}")
-    print(f"Against database: {db_path}")
 
     df = load_csv(csv_path)
 
@@ -44,10 +39,8 @@ def run_validation(config):
     validate_measurement_dates(df)
     validate_alt_ranges(df)
 
-    logging.info("\nCSV validation completed successfully.")
+    logging.info("CSV validation completed successfully.")
     logging.info(f"Rows validated: {len(df)}")
-    print("\nCSV validation completed successfully.")
-    print(f"Rows validated: {len(df)}")
 
 
 if __name__ == "__main__":

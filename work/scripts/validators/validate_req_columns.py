@@ -19,4 +19,3 @@ def validate_req_columns(df):
         raise ValueError(f"Missing required columns: {missing}")
 
     logging.info("All required columns are present.")
-    print("All required columns are present.")

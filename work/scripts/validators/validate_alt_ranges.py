@@ -11,7 +11,7 @@ def validate_alt_ranges(
     """
     Check whether numeric ALT values fall within a plausible range
 
-    Non-numeric field codes (W, G, ND, B) blanks ignored 
+    Non-numeric field codes (W, G, ND, B) ignored 
     they are handled by validate_alt_values().
     """
 
@@ -58,9 +58,7 @@ def validate_alt_ranges(
             raise ValueError(message)
 
         logging.warning(message)
-        print(message)
         return warning_df
 
     logging.info("All numeric ALT values fall within the expected range.")
-    print("All numeric ALT values fall within the expected range.")
     return pd.DataFrame()

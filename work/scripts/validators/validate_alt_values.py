@@ -53,4 +53,3 @@ def validate_alt_values(df):
         raise ValueError(f"Invalid ALT values found:\n{error_df}")
 
     logging.info("All ALT values are valid.")
-    print("All ALT values are valid.")

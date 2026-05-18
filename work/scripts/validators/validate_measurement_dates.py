@@ -30,4 +30,3 @@ def validate_measurement_dates(df):
             f"{error_df}"
         )
     logging.info("All measurement_date values use MM/DD/YYYY format.")
-    print("All measurement_date values use MM/DD/YYYY format.")

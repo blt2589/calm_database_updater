@@ -3,6 +3,8 @@ import sqlite3
 import pandas as pd
 
 
+# TODO: grid_node_id format validator?
+# TODO: incorporate validate_flux_node_id
 def validate_grid_node_ids_not_blank(df):
     """
     Check every row has grid_node_id
@@ -14,7 +16,7 @@ def validate_grid_node_ids_not_blank(df):
             f"{len(blank_rows)} row(s) have blank grid_node_id values."
         )
 
-    print("No blank grid_node_id values found.")
+    logging.info("No blank grid_node_id values found.")
 
 
 def get_database_grid_node_ids(db_path):
@@ -42,7 +44,7 @@ def validate_grid_nodes_exist(df, db_path):
         raise ValueError(
             f"The following grid_node_id values are not in the database: {missing_ids}"
         )
-    print("All CSV grid_node_id values exist in the database.")
+    logging.info("All CSV grid_node_id values exist in the database.")
 
 
 def validate_duplicate_grid_nodes(df):
@@ -57,4 +59,3 @@ def validate_duplicate_grid_nodes(df):
             f"{duplicates[['grid_node_id', 'grid_node_code']]}"
         )
     logging.info("No duplicate grid_node_id values found.")
-    print("No duplicate grid_node_id values found.")
