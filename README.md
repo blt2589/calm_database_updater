@@ -2,7 +2,7 @@
 
 Prerequisites:
 - Docker (https://docs.docker.com/get-started/get-docker/)
-  - Other container managers (ie. Podman) will likely work, but they have not been tested
+  - Other container managers (e.g. Podman) will likely work, but they have not been tested
 - Clone repo to local computer
 - CALM dataset (.sqlite)
 
@@ -32,33 +32,22 @@ Order of Operations
 6. Update geometries and final validations
 ---
 
+### Steps:
+- Download current production database (.sqlite) into the ```/work/db``` directory of the local repo
+- Download field recorded ALT measurement dataset as CSV into the ```/work/data``` directory of the local repo
 
-Download field recorded ALT measurement dataset as CSV into ```/work/data``` directory
 
-Copy current **Poduction** CALM database to ```/work/db``` directory
-```
-docker compose run --rm runner python /work/scripts/copy_db.py
-```
+### This program will:
+- Validate new ALT data in CSV
+- Stage new data for production
+- Insert new data into new Production DB
 
-Validate new data 
-```
-docker compose run --rm runner python /work/scripts/validate_csv.py
-```
 
-Stage new data for production
+Run
 ```
-docker compose run --rm runner python /work/scripts/stage_alt.py
+docker compose run --rm runner python /work/scripts/main.py 
 ```
 
-Insert new data into new Production DB
-```
-docker compose run --rm runner python /work/scripts/insert_measurements.py
-```
-
-Update geometries and views
-```
-docker compose run --rm runner python /work/scripts/update_geoms.py
-```
 
 ---
 
