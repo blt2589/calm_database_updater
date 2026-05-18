@@ -4,7 +4,7 @@ from copy_db import run_copy_database
 from validate_csv import run_validation
 from stage_alt import run_staging
 from insert_measurements import run_insert
-
+from helpers.logger import setup_logging
 
 CONFIG_PATH = "/work/scripts/config/update_config.yaml"
 
@@ -21,6 +21,8 @@ def main():
     """
     Run CALM annual update pipeline
     """
+
+    setup_logging()
 
     print("\nStarting CALM database update pipeline...\n")
 

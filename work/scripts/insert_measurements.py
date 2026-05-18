@@ -2,8 +2,8 @@
 docker compose run --rm runner python /work/scripts/insert_measurements.py
 """
 
+import logging
 import sqlite3
-
 
 from helpers.load_config import load_config
 
@@ -26,9 +26,9 @@ def check_staging_table_exists(conn):
     if result is None:
         raise RuntimeError("staging_alt_measurement table does not exist.")
 
-    print("Staging table found.")
+    logging.info("Staging table found.")
 
-## TODO: if not 121 records (for grid), throw exception?
+## TODO: if not 121 records (for grid) or 71 records (for flux), throw exception? what about 56mile (how many)?
 def count_staged_records(conn):
     """
     Count staged records before insertion
@@ -41,7 +41,7 @@ def count_staged_records(conn):
     if count == 0:
         raise RuntimeError("No records found in staging_alt_measurement.")
 
-    print(f"Staged records found: {count}")
+    logging.info(f"Staged records found: {count}")
 
     return count
 
@@ -78,7 +78,7 @@ def check_for_duplicate_measurements(conn):
             f"{duplicate_text}"
         )
 
-    print("No duplicate measurements found.")
+    logging.info("No duplicate measurements found.")
 
 
 def insert_measurements_from_staging(conn):
@@ -134,7 +134,7 @@ def insert_measurements_from_staging(conn):
 
     conn.commit()
 
-    print(f"Inserted records into measurement table: {inserted_count}")
+    logging.info(f"Inserted records into measurement table: {inserted_count}")
 
     return inserted_count
 
@@ -160,7 +160,7 @@ def run_insert(config):
                 f"Staged: {staged_count}, Inserted: {inserted_count}"
             )
 
-        print("Measurement insertion completed successfully.")
+        logging.info("Measurement insertion completed successfully.")
 
     except Exception:
         conn.rollback()
@@ -168,10 +168,6 @@ def run_insert(config):
 
     finally:
         conn.close()
-
-
-
-
 
 
 if __name__ == "__main__":

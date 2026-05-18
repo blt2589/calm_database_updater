@@ -1,6 +1,7 @@
+import logging
 import pandas as pd
 
-VALID_ALT_CODES = {"W", "G", "ND", "B", ""}
+VALID_ALT_CODES = {"W", "G", "ND", "B"}
 
 
 def is_valid_alt_value(value):
@@ -10,7 +11,6 @@ def is_valid_alt_value(value):
     Valid values are:
     - numeric values, such as 45, 62.5
     - allowed text codes, such as W, G, ND, B
-    - blank values
     """
     value = str(value).strip().upper()
 
@@ -52,4 +52,4 @@ def validate_alt_values(df):
         error_df = pd.DataFrame(errors)
         raise ValueError(f"Invalid ALT values found:\n{error_df}")
 
-    print("All ALT values are valid.")
+    logging.info("All ALT values are valid.")

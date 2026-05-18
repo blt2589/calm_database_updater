@@ -1,3 +1,5 @@
+import logging
+
 REQUIRED_COLUMNS = [
     "grid_node_id",
     "grid_node_code",
@@ -16,4 +18,4 @@ def validate_req_columns(df):
     if missing:
         raise ValueError(f"Missing required columns: {missing}")
 
-    print("All required columns are present.")
+    logging.info("All required columns are present.")

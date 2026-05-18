@@ -1,9 +1,9 @@
+import logging
 import re
 import pandas as pd
 
 
 FLUX_NODE_PATTERN = r"^flux\d+_t\d+_\d+$"
-
 
 def validate_flux_node_ids(df):
     """
@@ -19,14 +19,11 @@ def validate_flux_node_ids(df):
     errors = []
 
     for idx, row in df.iterrows():
-
         grid_node_id = str(row["grid_node_id"]).strip()
 
         # Only validate Flux node IDs
         if grid_node_id.lower().startswith("flux"):
-
             if not re.match(FLUX_NODE_PATTERN, grid_node_id):
-
                 errors.append(
                     {
                         "row_number": idx + 2,
@@ -35,13 +32,11 @@ def validate_flux_node_ids(df):
                 )
 
     if errors:
-
         error_df = pd.DataFrame(errors)
-
         raise ValueError(
             "Invalid Flux grid_node_id format detected.\n"
             "Expected format: flux#_t#_#\n\n"
             f"{error_df}"
         )
 
-    print("Flux grid_node_id values are valid.")
+    logging.info("Flux grid_node_id values are valid.")
