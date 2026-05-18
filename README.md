@@ -1,5 +1,4 @@
-# calm_the_dusty_butter
-# CALM Database Update
+# CALM Database Updater
 
 Prerequisites:
 - Docker (https://docs.docker.com/get-started/get-docker/)
