@@ -51,11 +51,14 @@ def validate_duplicate_grid_nodes(df):
     """
     Check for duplicate grid_node_id entries in CSV
     """
-    duplicates = df[df.duplicated(subset=["grid_node_id"], keep=False)]
+    # duplicates = df[df.duplicated(subset=["grid_node_id"], keep=False)]
+    duplicates = df[df.duplicated(subset=["grid_node_id", "measurement_date"], keep=False)]
+
 
     if not duplicates.empty:
         raise ValueError(
             f"Duplicate grid_node_id values found:\n"
-            f"{duplicates[['grid_node_id', 'grid_node_code']]}"
+            # f"{duplicates[['grid_node_id', 'grid_node_code']]}"
+            f"duplicates{[["source_csv", "grid_node_id", "grid_node_code", "measurement_date"]]}"
         )
     logging.info("No duplicate grid_node_id values found.")

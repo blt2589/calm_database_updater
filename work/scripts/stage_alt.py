@@ -6,7 +6,8 @@ from datetime import datetime
 import sqlite3
 import pandas as pd
 
-from helpers.load_csv import load_csv
+# from helpers.load_csv import load_csv
+from helpers.load_csv_folder import load_csv_folder
 from helpers.load_config import load_config
 
 
@@ -168,10 +169,11 @@ def run_staging(config):
     Main staging workflow
     """
 
-    csv_path = config["input_csv"]
+    # csv_path = config["input_csv"]
+    csv_folder = config["input_csv_folder"]
     db_path = config["output_database"]
 
-    df = load_csv(csv_path)
+    df = load_csv_folder(csv_folder)
 
     conn = sqlite3.connect(db_path)
 

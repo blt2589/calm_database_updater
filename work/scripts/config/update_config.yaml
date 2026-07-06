@@ -3,10 +3,12 @@
 # Path to source (current production) DB
 source_database: "/work/db/calm_v10.sqlite"
 # Output path to copy of current production DB
-output_database: "/work/db/calm_v10_18may.sqlite"
+output_database: "/work/db/calm_v10_02jul.sqlite"
 
 # Path to ALT CSV
-input_csv: "/work/data/2026_alt_field_export.csv"
+# input_csv: "/work/data/2026_alt_field_export.csv"
+input_csv_folder: "/work/data/alt_source"
+
 
 # Future use
 measurement_method: "manual probing"
